@@ -23,7 +23,9 @@ int main()
 	doc.parse<parse_declaration_node | parse_no_data_nodes>(&xml_copy[0]);
 
 	xml_node<>* cur_node = doc.first_node("map");
-	string rootnode_type = cur_node->first_attribute("type")->value();
+	string next_node = cur_node->first_attribute("type")->value();
+
+	cout << rootnode_type << endl;
 }
 
 
