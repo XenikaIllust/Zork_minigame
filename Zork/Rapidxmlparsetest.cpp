@@ -3,6 +3,7 @@
 #include <vector>
 #include <fstream>
 #include "rapidxml-1.13/rapidxml.hpp"
+#include "rapidxml-1.13/rapidxml_print.hpp"
 
 using namespace std;
 using namespace rapidxml;
@@ -11,7 +12,7 @@ int main()
 {
 	string input_xml;
 	string line;
-	ifstream in("sampletxt.xml");
+	ifstream in("SamplePack/sampletxt.xml");
 
 	while (getline(in, line))
 		input_xml += line;
@@ -20,13 +21,15 @@ int main()
 	xml_copy.push_back('\0');
 
 	xml_document<> doc;
-	doc.parse<parse_declaration_node | parse_no_data_nodes>(&xml_copy[0]);
+	doc.parse<0>(&xml_copy[0]);
 
-	xml_node<>* cur_node = doc.first_node("map");
-	
-	xml_attribute<>* attr = cur_node->first_attribute();
-
-	cout << attr->name() << endl;
+	xml_node<> *map_node = doc.first_node();
+	cout << "Name of map node is: " << map_node->name() << "\n";
+	xml_node<> *room_node = map_node->first_node();
+	cout << "Name of room node is: " << room_node->name() << endl;
+	xml_node<> *name_node = room_node->first_node("name");
+	cout << "Value of name node is: " << name_node->value() << endl;
+	cout << "Value of sibling node is: " << name_node->next_sibling()->value() << endl;
 }
 
 
