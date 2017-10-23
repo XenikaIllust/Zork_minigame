@@ -7,7 +7,7 @@
 class Input {
 public:
 	void getInput();
-	void interpretInput(std::string* words);
+	void error();
 
 	std::string returnDirection();
 	std::string returnCommand();
