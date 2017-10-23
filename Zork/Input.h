@@ -1,22 +1,24 @@
-#pragma once
+#ifndef  INPUT_H
+#define INPUT_H
 
 #include <iostream>
 #include <string>
 
 class Input {
 public:
-	getInput(std::string in);
-	void separateString(std::string* action, std::string* object, std::string* item);
-	void interpretString(const std::string* action); //function overloaded
-	void interpretString(const std::string* action, const std::string* object);
-	void interpretString(const std::string* action, const std::string* object, const std::string* item );\
+	void getInput();
+	void interpretInput(std::string* words);
 
-	void 
+	std::string returnDirection();
+	std::string returnCommand();
+	std::string returnObject();
+	std::string returnItem();
 
 private:
-	std::string action;
-	char direction;
+	std::string command;
 	std::string direction;
 	std::string item;
-	std::string subject;
-}
+	std::string object;
+};
+
+#endif
