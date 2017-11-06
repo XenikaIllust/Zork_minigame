@@ -18,6 +18,7 @@ private:
 	std::string command;
 	std::string direction;
 	std::string item;
+	std::string creature;
 	std::string object;
 };
 

@@ -8,7 +8,13 @@ using namespace rapidxml;
 int main() {
 	Input input;
 
+	cout << Type input here:
 	input.getInput();
+
+	cout << input.returnDirection();
+	cout << input.returnCommand();
+	cout << input.returnItem();
+	cout << input.returnObject();
 
 	return 0;
 }

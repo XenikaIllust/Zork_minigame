@@ -18,12 +18,33 @@ void Input::getInput() {
 		direction = str1;
 	}
 
-	else if (str1 == "take" || str1 == "open" || str1 == "read" || str1 == "drop" || str1 == "put" || str1 == "") {
+	else if (str1 == "take" || str1 == "open" || str1 == "read" || str1 == "drop") {
 		command = str1;
+
+		cin >> str2;
+		item = str2;
+	}
+
+	else if (str1 == "attack" || str1 == "put") { //four word input special case
+		command = str1;
+
+		cin >> str2;
+		creature = str2;
+
+		cin >> str3;
+		
+		cin >> str4;
+		item = str4;
+	}
+
+	else if (str1 == "turn") { //double letter special case
+		if (str2 == "on") {
+			command = "turn_on";
+		}
 	}
 
 	else {
-		cout << "Error" << endl;
+		cout << "I do not recognize what you want to do." << endl;
 	}
 }
 
