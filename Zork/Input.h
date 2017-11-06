@@ -1,4 +1,4 @@
-#ifndef  INPUT_H
+#ifndef INPUT_H
 #define INPUT_H
 
 #include <iostream>
@@ -13,6 +13,7 @@ public:
 	std::string returnCommand();
 	std::string returnObject();
 	std::string returnItem();
+	std::string returnCreature();
 
 private:
 	std::string command;

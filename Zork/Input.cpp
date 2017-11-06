@@ -37,6 +37,7 @@ void Input::getInput() {
 		item = str4;
 	}
 
+	//not working
 	else if (str1 == "turn") { //double letter special case
 		if (str2 == "on") {
 			command = "turn_on";
@@ -48,6 +49,24 @@ void Input::getInput() {
 	}
 }
 
-void Input::error() {
-	cout << "Error" << endl;
+string Input::returnDirection() {
+	return direction;
 }
+
+string Input::returnCommand() {
+	return command;
+}
+
+string Input::returnObject() {
+	return object;
+}
+
+string Input::returnItem() {
+	return item;
+}
+
+string Input::returnCreature() {
+	return creature;
+}
+
+
