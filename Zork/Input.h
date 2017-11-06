@@ -11,7 +11,7 @@ public:
 
 	std::string returnDirection();
 	std::string returnCommand();
-	std::string returnObject();
+	std::string returnContainer();
 	std::string returnItem();
 	std::string returnCreature();
 
@@ -20,7 +20,7 @@ private:
 	std::string direction;
 	std::string item;
 	std::string creature;
-	std::string object;
+	std::string container;
 };
 
 #endif

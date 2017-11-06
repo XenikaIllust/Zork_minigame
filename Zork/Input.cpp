@@ -11,6 +11,14 @@ void Input::getInput() {
 	string str2("");
 	string str3("");
 	string str4("");
+	
+	//reset all variables
+	direction = "";
+	command = "";
+	container = "";
+	item = "";
+	creature = "";
+	direction = "";
 
 	cin >> str1;
 
@@ -18,29 +26,60 @@ void Input::getInput() {
 		direction = str1;
 	}
 
-	else if (str1 == "take" || str1 == "open" || str1 == "read" || str1 == "drop") {
+	else if (str1 == "i" || str1 == "inventory") {
+		command = str1;
+	}
+
+	else if (str1 == "take" || str1 == "read" || str1 == "drop") {
 		command = str1;
 
 		cin >> str2;
 		item = str2;
 	}
 
+	else if (str1 == "open") {
+		command = str1;
+
+		cin >> str2;
+
+		if (str2 == "exit") {
+			//call game over function
+			cout << "Game over" << endl;
+			return;
+		}
+
+		else
+			container = str2;
+	}
+
 	else if (str1 == "attack" || str1 == "put") { //four word input special case
 		command = str1;
 
 		cin >> str2;
-		creature = str2;
+		if (str1 == "attack")
+			creature = str2;
+
+		else
+			item = str2;
 
 		cin >> str3;
 		
 		cin >> str4;
-		item = str4;
+		if (str1 == "attack")
+			item = str4;
+
+		else
+			container = str4;
 	}
 
 	//not working
 	else if (str1 == "turn") { //double letter special case
+		cin >> str2;
 		if (str2 == "on") {
 			command = "turn_on";
+
+			cin >> str3;
+			item = str3;
 		}
 	}
 
@@ -57,8 +96,8 @@ string Input::returnCommand() {
 	return command;
 }
 
-string Input::returnObject() {
-	return object;
+string Input::returnContainer() {
+	return container;
 }
 
 string Input::returnItem() {

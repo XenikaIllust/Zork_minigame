@@ -8,14 +8,16 @@ using namespace rapidxml;
 int main() {
 	Input input;
 
-	cout << "Type input here :" << endl;
-	input.getInput();
+	while (true) {
+		cout << "Type input here :" << endl;
+		input.getInput();
 
-	cout << input.returnDirection() << endl;
-	cout << input.returnCommand() << endl;
-	cout << input.returnCreature() << endl;
-	cout << input.returnItem() << endl;
-	cout << input.returnObject() << endl;
+		cout << "direction: " << input.returnDirection() << endl;
+		cout << "command: " << input.returnCommand() << endl;
+		cout << "creature: " << input.returnCreature() << endl;
+		cout << "item: " << input.returnItem() << endl;
+		cout << "container: " << input.returnContainer() << endl;
+	}
 
 	return 0;
 }
