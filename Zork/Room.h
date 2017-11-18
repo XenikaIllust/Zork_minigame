@@ -1,15 +1,28 @@
-#pragma once
+#ifndef ROOM_H
+#define ROOM_H
 
 #include <iostream>
 #include <string>
 
-class Room {
-public:
-	Room();
-	virtual ~Room();
+using namespace std;
 
-	Room initializeRoom(std::string roomName);
+class Room
+{
+	string name;
+	string description;
 
-private:
+	public:
+		void Room(){
+			Room * northRoom = NULL;
+			Room * southRoom = NULL;
+			Room * westRoom = NULL;
+			Room * eastRoom = NULL;
+		};
+
+		void virtual ~Room();
+		void getName(string);
+		void getDescription(string);
 
 };
+
+#endif
