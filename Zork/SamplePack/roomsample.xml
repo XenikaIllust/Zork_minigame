@@ -83,7 +83,7 @@
     <description>You found the exit!</description>
     <border>
       <name>room4</name>
-      <direction>south</direction> 
+      <direction>south</direction>
     </border>
   </room>
 </map>
