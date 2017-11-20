@@ -23,6 +23,8 @@ int main()
 	xml_document<> doc;
 	doc.parse<0>(&xml_copy[0]);
 
+	cout << doc << endl;
+
 	xml_node<> *map_node = doc.first_node();
 	cout << "Name of map node is: " << map_node->name() << "\n";
 	xml_node<> *room_node = map_node->first_node();

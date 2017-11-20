@@ -8,7 +8,8 @@ public:
 	Room();
 	virtual ~Room();
 
-	Room initializeRoom(std::string roomName);
+	getName(string);
+	getDescription(string);
 
 private:
 

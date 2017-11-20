@@ -6,14 +6,14 @@
 
 class Input {
 public:
-	void getInput();
+	void enterInput();
 	void error();
 
-	std::string returnDirection();
-	std::string returnCommand();
-	std::string returnContainer();
-	std::string returnItem();
-	std::string returnCreature();
+	std::string getDirection();
+	std::string getCommand();
+	std::string getContainer();
+	std::string getItem();
+	std::string getCreature();
 
 private:
 	std::string command;

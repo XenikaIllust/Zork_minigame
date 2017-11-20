@@ -76,7 +76,7 @@ void Input::getInput() {
 	else if (str1 == "turn") { //double letter special case
 		cin >> str2;
 		if (str2 == "on") {
-			command = "turn_on";
+			command = "turnon";
 
 			cin >> str3;
 			item = str3;
