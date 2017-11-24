@@ -4,6 +4,12 @@
 #include "Room.h"
 #include <string>
 
+#include "rapidxml-1.13/rapidxml.hpp"
+#include "rapidxml-1.13/rapidxml_print.hpp"
+
+using namespace rapidxml;
+
+
 class Map{
 
 private:
@@ -12,9 +18,9 @@ private:
 public:
 	vector<Room*> rooms;
 
-	void Map();
+	void Map(xml&);
 
-	void addRoom(string, string, string, string);	//build a new room and add it to existing
+	void addRoom(string, string, sxml_<> *node);	//build a new room and add it to existing
 
 	string getBorderName(Room);
 

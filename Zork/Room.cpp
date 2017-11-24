@@ -1,11 +1,21 @@
 #include "Room.h"
-#include "Border.h"
-#include <iostream>
 
 void Room::Room(string roomName, string roomDescription){
 	name = roomName;
 	description = roomDescription;
 	type = "none";
+}
+
+void Room::Room(string roomName, string roomDescription, xml_<> * currNode){
+	name = roomName;
+	description = roomDescription;
+
+	xml_node<> * border = doc.first_node("border");
+
+	while(border->next_sibling() != NULL){
+		setBorder(doc.curr_node.first_node("border")->("direction")->value, doc.curr_node.first_node("border")->("name")->value);
+		curr_node = doc.curr_node->next_sibling();
+	}
 
 }
 
@@ -15,6 +25,7 @@ void Room::Room(string roomName, string roomDescription, string newType){
 	Room::setType(newType);
 
 }
+
 
 void Room::setBorder(string dir, string newName){
 

@@ -2,11 +2,11 @@
 #define ROOM_H
 
 #include <iostream>
+#include <vector>
 #include <string>
 #include "Border.h"
 
 using namespace std;
-using namespace vecotr;
 
 class Room{
 
@@ -21,22 +21,12 @@ private:
 
 public:
 	void Room(string, string);
-	void setBorder(Border);
+	void Room(string, string, xml_<> node);
+	void setBorder(string, string);
 	void setType(string);
 
 	string getRoomName();
 	string getRoomDescription();
-
-
-
-
-
-	void getTrigger();
-	void getItem();
-
-	void updateStatus();
-
-	void setBorder(string);
 
 	void virtual ~Room();
 };
