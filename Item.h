@@ -12,13 +12,7 @@ typedef struct {
 class Item{
 public:  
   Item(rapidxml::xml_node<>*);
-  //void Item(string, string);
-  //void Item(string, string, string);
   virtual ~Item();
-  
-  //void setWriting(string);
-  //void setStatus(string);
-  //void setIsOn(string, string);
   
   std::string getName();
   std::string getWriting();
