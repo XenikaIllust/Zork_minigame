@@ -2,25 +2,28 @@
 #define TRIGGER_H
 #include "Condition.h"
 #include <string>
+#include <vector>
 #include "rapidxml-1.13/rapidxml.hpp"
 #include "rapidxml-1.13/rapidxml_print.hpp"
 
-class Item{
+class Trigger{
 public:  
-  Item(rapidxml::xml_node<>*);
-  virtual ~Item();
+  Trigger(rapidxml::xml_node<>*);
+  virtual ~Trigger();
   
-  std::string getName();
-  std::string getWriting();
-  std::string getStatus();
-  std::string getTurnonPrint();
-  std::string getTurnonAction();
+  std::string getType();
+  std::string getCommand();
+  std::string getAction(int i);
+  int getActionSize();
+  std::string getPrint();
+
+  Condition condition;
   
 private:
-  std::string name;
-  std::string writing;
-  std::string status;
-  turnon TurnOn;
+  std::string type;
+  std::string command;
+  std::vector<std::string> action;
+  std::string print;
 };
 
 #endif

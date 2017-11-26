@@ -28,6 +28,7 @@ void Zork::initializeGame(string filepath) {
   }
 
   this->doc.parse<0>(&this->xml_copy[0]);
+  in.close();
   return;
 }
 
