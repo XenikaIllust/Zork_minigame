@@ -1,30 +1,34 @@
 #ifndef CREATURE_H
 #define CREATURE_H
 #include <string>
+#include <vector>
 #include "rapidxml-1.13/rapidxml.hpp"
 #include "rapidxml-1.13/rapidxml_print.hpp"
+#include "Trigger.h"
+#include "Condition.h"
 
-typedef struct {
-  std::string print;
-  std::string action;
-} turnon;
+class Attack {
+public:
+  std::vector<std::string> actionlist;
+  std::vector<std::string> printlist;
+  Condition condition;
+}
 
-class Item{
+class Creature{
 public:  
-  Item(rapidxml::xml_node<>*);
-  virtual ~Item();
+  Creature(rapidxml::xml_node<>*);
+  virtual ~Creature();
   
   std::string getName();
-  std::string getWriting();
-  std::string getStatus();
-  std::string getTurnonPrint();
-  std::string getTurnonAction();
+  std::string getVulnerability(int i);
+  int getVulnerabilitylistSize();
+
+  Trigger trigger;
+  Attack attack;
   
 private:
   std::string name;
-  std::string writing;
-  std::string status;
-  turnon TurnOn;
+  std::vector<std::string> vulnerabilitylist;
 };
 
 #endif
