@@ -9,10 +9,13 @@
 
 class Attack {
 public:
+  Attack(rapidxml::xml_node<>*);
+  virtual ~Attack();
+  
   std::vector<std::string> actionlist;
   std::vector<std::string> printlist;
   Condition condition;
-}
+};
 
 class Creature{
 public:  
