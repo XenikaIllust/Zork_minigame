@@ -1,0 +1,64 @@
+#include "Container.h"
+#include <iostream>
+
+using namespace std;
+using namespace rapidxml;
+
+Container::Container(xml_node<>* newContainer){
+  if(newContainer != NULL) {
+    if(newContainer->first_node("name") != nullptr)
+      this->name = newContainer->first_node("name")->value();
+    else
+      this->name = "";
+    
+    if(newContainer->first_node("writing") != nullptr) 
+      this->writing = newContainer->first_node("writing")->value();
+    else
+      this->writing = "";
+    
+    if(newContainer->first_node("status") != nullptr) 
+      this->status = newContainer->first_node("status")->value();
+    else
+      this->status = "";
+    
+    xml_node<>* turnon_node = nullptr;
+    
+    if(newContainer->first_node("turnon") != nullptr) {
+      turnon_node = newContainer->first_node("turnon");
+      
+      if(turnon_node->first_node("print") != nullptr)
+	TurnOn.print = turnon_node->first_node("print")->value();
+      else
+	TurnOn.print = "";
+
+      if(turnon_node->first_node("action") != nullptr)
+	TurnOn.action = turnon_node->first_node("action")->value();
+      else
+	TurnOn.action = "";
+    }
+  }
+}
+
+string Container::getName() {
+  return this->name;
+}
+
+string Container::getWriting() {
+  return this->writing;
+}
+
+string Container::getStatus() {
+  return this->status;
+}
+
+string Container::getTurnonPrint() {
+  return TurnOn.print;
+}
+
+string Container::getTurnonAction() {
+  return TurnOn.action;
+  }
+
+Container::~Container(){
+
+}

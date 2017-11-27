@@ -4,8 +4,8 @@
 using namespace std;
 using namespace rapidxml;
 
-Trigger::Trigger(xml_node<>* newTrigger) : condition(newTrigger->first_node("condition")) {
-  if(newTrigger != NULL) {
+Trigger::Trigger(xml_node<>* newTrigger) : condition( (newTrigger != nullptr && newTrigger->first_node("condition") != nullptr) ? newTrigger->first_node("condition") : nullptr) {
+  if(newTrigger != nullptr) {    
     if(newTrigger->first_node("type") != nullptr)
       this->type = newTrigger->first_node("type")->value();
     else
@@ -22,7 +22,7 @@ Trigger::Trigger(xml_node<>* newTrigger) : condition(newTrigger->first_node("con
       action_listnode = newTrigger->first_node("action");
       action.push_back(action_listnode->value());
 
-      while(action_listnode->next_sibling("action") != NULL) {
+      while(action_listnode->next_sibling("action") != nullptr) {
 	action_listnode = action_listnode->next_sibling("action");
 	action.push_back(action_listnode->value());
       }

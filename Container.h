@@ -3,23 +3,26 @@
 #include <string>
 #include "rapidxml-1.13/rapidxml.hpp"
 #include "rapidxml-1.13/rapidxml_print.hpp"
-#include "Item.h"
+#include "Trigger.h"
 
 class Container{
 public:  
-  Item(rapidxml::xml_node<>*);
-  virtual ~Item();
+  Container(rapidxml::xml_node<>*);
+  virtual ~Container();
   
   std::string getName();
-  std::string getWriting();
   std::string getStatus();
-  std::string getTurnonPrint();
-  std::string getTurnonAction();
+  std::string getAccept();
+  std::string getItem(int i);
+  int getItemlistSize();
+  
+  Trigger trigger;
   
 private:
   std::string name;
-  Item item;
   std::string status;
+  std::string accept;
+  std::vector<std::string> itemlist;
 };
 
 #endif
