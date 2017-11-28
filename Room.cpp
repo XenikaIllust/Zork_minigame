@@ -1,6 +1,9 @@
 #include "Room.h"
 
-Room::Room(xml_node<>* newRoom){
+using namespace std;
+using namespace rapidxml;
+
+Room::Room(xml_node<>* newRoom) : trigger( newRoom != nullptr && newRoom->first_node("trigger") != nullptr ? newRoom->first_node("trigger") : nullptr) {
   if(newRoom != nullptr) {
     if(newRoom->first_node("name") != nullptr)
       this->name = newRoom->first_node("name")->value();
@@ -8,7 +11,7 @@ Room::Room(xml_node<>* newRoom){
       this->name = "";
 
     if(newRoom->first_node("description") != nullptr) 
-      this->description = roomDescription;
+      this->description = newRoom->first_node("description")->value();
     else
       this->description = "";
 
@@ -19,10 +22,7 @@ Room::Room(xml_node<>* newRoom){
   }
 }
 
-void Room::setType(string newType){
-  type = newType;
-  return;
-}
+Room::~Room() {}
 
 string Room::getRoomName(){
   return this->name;
@@ -32,6 +32,6 @@ string Room::getRoomDesciption(){
   return this->description;
 }
 
-string Room::getType(){
+string Room::getRoomType(){
   return this->type;
 }

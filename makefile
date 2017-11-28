@@ -7,6 +7,8 @@ TestCondition: Zork.cpp Zork.h TestCondition.cpp Condition.cpp Condition.h
 TestContainer: Zork.cpp Zork.h TestContainer.cpp Container.cpp Container.h Trigger.h Trigger.cpp Condition.h Condition.cpp
 	g++ -std=c++0x TestContainer.cpp Container.cpp Container.h Zork.cpp Zork.h Trigger.h Trigger.cpp Condition.h Condition.cpp -o TestContainer -g
 
+TestCreature: Zork.cpp Zork.h TestCreature.cpp Creature.cpp Creature.h Trigger.h Trigger.cpp Condition.h Condition.cpp
+	g++ -std=c++0x TestCreature.cpp Creature.cpp Creature.h Zork.cpp Zork.h Trigger.h Trigger.cpp Condition.h Condition.cpp -o TestCreature -g
 
 clean:
 	rm .~

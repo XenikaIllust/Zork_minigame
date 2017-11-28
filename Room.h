@@ -2,16 +2,16 @@
 #define ROOM_H
 
 #include "Border.h"
-
 #include <iostream>
 #include <vector>
 #include <string>
 #include "rapidxml-1.13/rapidxml.hpp"
 #include "rapidxml-1.13/rapidxml_print.hpp"
+#include "Trigger.h"
 
-class Room{
+class Room {
 public:
-  Room(xml_node<>*);
+  Room(rapidxml::xml_node<>*);
   virtual ~Room();
   std::string getRoomName();
   std::string getRoomDescription();
@@ -22,7 +22,6 @@ public:
   int getContainerlistSize();
   std::string getCreature(int i);
   int getCreaturelistSize();
-  Trigger getTrigger();
 
 private:
   std::string name;
