@@ -32,5 +32,26 @@ int main(int argc, char** argv) {
     }
   }
 
+  for(int i = 0; i < roomlist.size(); i++) {
+    cout << "Room " << i << endl;
+    cout << roomlist[i].getName() << endl;
+    cout << roomlist[i].getDescription() << endl;
+    cout << roomlist[i].getType() << endl;
+
+    for(int j = 0; j < roomlist[i].getItemlistSize(); j++) {
+      cout << roomlist[i].getItem(j) << endl;
+    }
+
+    for(int j = 0; j < roomlist[i].getContainerlistSize(); j++) {
+      cout << roomlist[i].getContainer(j) << endl;
+    }
+
+    for(int j = 0; j < roomlist[i].getCreaturelistSize(); j++) {
+      cout << roomlist[i].getCreature(j) << endl;
+    }
+
+    cout << endl;
+  }
+
   return 0;
 }

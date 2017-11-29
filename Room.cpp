@@ -15,23 +15,99 @@ Room::Room(xml_node<>* newRoom) : trigger( newRoom != nullptr && newRoom->first_
     else
       this->description = "";
 
+    if(newRoom->first_node("type") != nullptr) 
+      this->type = newRoom->first_node("type")->value();
+    else
+      this->type = "";
+
     if(newRoom->first_node("border") != nullptr) {
       xml_node<>* border_node = newRoom->first_node("border");
-      this->setBorder(border_node);
+      Border border(border_node);
+      this->borderlist.push_back(border);
+
+      while(border_node->next_sibling("border") != nullptr) {
+	border_node = border_node->next_sibling("border");
+	Border border(border_node);
+	this->borderlist.push_back(border);
+      }
+    }
+
+    if(newRoom->first_node("item") != nullptr) {
+      xml_node<>* item_node = newRoom->first_node("item");
+      this->itemlist.push_back(item_node->value());
+
+      while(item_node->next_sibling("item") != nullptr) {
+        item_node = item_node->next_sibling("item");
+	this->itemlist.push_back(item_node->value());
+      }
+    }
+
+    if(newRoom->first_node("container") != nullptr) {
+      xml_node<>* container_node = newRoom->first_node("container");
+      this->containerlist.push_back(container_node->value());
+
+      while(container_node->next_sibling("container") != nullptr) {
+        container_node = container_node->next_sibling("container");
+	this->containerlist.push_back(container_node->value());
+      }
+    }
+
+    if(newRoom->first_node("creature") != nullptr) {
+      xml_node<>* creature_node = newRoom->first_node("creature");
+      this->creaturelist.push_back(creature_node->value());
+
+      while(creature_node->next_sibling("creature") != nullptr) {
+        creature_node = creature_node->next_sibling("creature");
+	this->creaturelist.push_back(creature_node->value());
+      }
     }
   }
 }
 
 Room::~Room() {}
 
-string Room::getRoomName(){
+string Room::getName(){
   return this->name;
 }
 
-string Room::getRoomDesciption(){
+string Room::getDescription(){
   return this->description;
 }
 
-string Room::getRoomType(){
+string Room::getType(){
   return this->type;
 }
+
+Border Room::getBorder(int i){
+  return this->borderlist[i];
+}
+
+int Room::getBorderlistSize(){
+  return this->borderlist.size();
+}
+
+string Room::getItem(int i){
+  return this->itemlist[i];
+}
+
+int Room::getItemlistSize(){
+  return this->itemlist.size();
+}
+
+string Room::getContainer(int i){
+  return this->containerlist[i];
+}
+
+int Room::getContainerlistSize(){
+  return this->containerlist.size();
+}
+
+string Room::getCreature(int i){
+  return this->creaturelist[i];
+}
+
+int Room::getCreaturelistSize(){
+  return this->creaturelist.size();
+}
+
+

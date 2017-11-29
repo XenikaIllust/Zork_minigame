@@ -13,8 +13,8 @@ public:
   Border(rapidxml::xml_node<>*);
   virtual ~Border();
   
-  std::string getDirection();
-  std::string getName();
+  std::string getBorderDir();
+  std::string getBorderName();
 };
 
 #endif

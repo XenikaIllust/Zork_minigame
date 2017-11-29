@@ -84,6 +84,8 @@ void Input::getInput() {
   }
   
   else {
+    string rubbish;
+    getline(cin, rubbish);
     cout << "I do not recognize what you want to do." << endl;
   }
 }

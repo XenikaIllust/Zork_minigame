@@ -1,5 +1,5 @@
-#ifndef ROOM_H
-#define ROOM_H
+#ifndef MAP_H
+#define MAP_H
 
 #include <iostream>
 #include <vector>
@@ -14,11 +14,9 @@ public:
   Room(rapidxml::xml_node<>*);
   virtual ~Room();
   
-  std::string getName();
-  std::string getDescription();
-  std::string getType();
-  Border getBorder(int i);
-  int getBorderlistSize();
+  std::string getRoomName();
+  std::string getRoomDescription();
+  std::string getRoomType();
   std::string getItem(int i);
   int getItemlistSize();
   std::string getContainer(int i);

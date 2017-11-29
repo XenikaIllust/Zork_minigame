@@ -1,17 +1,29 @@
 #include "Border.h"
 
-Border::Border(string dir, string new_name){
-	direction = dir;
-	name = new_name;
+using namespace std;
+using namespace rapidxml;
+
+Border::Border(xml_node<>* newBorder){
+  if(newBorder != nullptr) {
+    if(newBorder->first_node("name") != nullptr)
+      this->name = newBorder->first_node("name")->value();
+    else
+      name = "";
+
+    if(newBorder->first_node("direction") != nullptr)
+      this->direction = newBorder->first_node("direction")->value();
+    else
+      name = "";
+  }
 }
 
-string Border::getBorderDir(){
+string Border::getDirection(){
 	return this->direction;
 }
 
-string Border::getBorderName(){
+string Border::getName(){
 	return this->name;
 }
 
-Border::~Border(){
+Border::~Border() {
 }
