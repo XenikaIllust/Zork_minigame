@@ -15,6 +15,10 @@ public:
   std::string getAccept();
   std::string getItem(int i);
   int getItemlistSize();
+  bool getOpenStatus();
+  void changeOpenStatus(bool status);
+  void addItem(std::string item);
+  void removeItem(std::string item);
   
   Trigger trigger;
   
@@ -23,6 +27,7 @@ private:
   std::string status;
   std::string accept;
   std::vector<std::string> itemlist;
+  bool openStatus;
 };
 
 #endif

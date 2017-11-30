@@ -15,11 +15,11 @@ public:
   Map(rapidxml::xml_node<>*);
   virtual ~Map();
 
-  Room getRoom(int i);
+  Room* getRoom(int i);
   int getRoomlistSize();
   Item getItem(int i);
   int getItemlistSize();
-  Container getContainer(int i);
+  Container* getContainer(int i);
   int getContainerlistSize();
   Creature getCreature(int i);
   int getCreaturelistSize();

@@ -21,6 +21,8 @@ public:
   int getBorderlistSize();
   std::string getItem(int i);
   int getItemlistSize();
+  void addItem(std::string);
+  void removeItem(std::string);
   std::string getContainer(int i);
   int getContainerlistSize();
   std::string getCreature(int i);

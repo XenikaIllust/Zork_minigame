@@ -94,6 +94,17 @@ int Room::getItemlistSize(){
   return this->itemlist.size();
 }
 
+void Room::addItem(string item) {
+  this->itemlist.push_back(item);
+}
+
+void Room::removeItem(string item) {
+  for(int i = 0; i < itemlist.size(); i++) {
+    if(itemlist[i] == item) 
+      this->itemlist.erase(itemlist.begin() + i);
+  }
+}
+
 string Room::getContainer(int i){
   return this->containerlist[i];
 }

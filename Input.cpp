@@ -1,91 +1,134 @@
-#include <iostream>
-#include <string>
 #include "Input.h"
-#include "rapidxml-1.13/rapidxml.hpp"
+#include <sstream>
 
 using namespace std;
-using namespace rapidxml;
 
-void Input::getInput() {
-  string str1("");
-  string str2("");
-  string str3("");
-  string str4("");
-  
+void Input::getInput(string* autoInputstr) {
   //reset all variables
+  input.clear();
   direction = "";
   command = "";
   container = "";
   item = "";
   creature = "";
-  direction = "";
-  
-  cin >> str1;
-  
-  if (str1 == "n" || str1 == "s" || str1 == "e" || str1 == "w" || str1 == "north" || str1 == "south" || str1 == "east" || str1 == "west") {
-    direction = str1;
+
+  string in;
+
+  if(*autoInputstr == "")
+    getline(cin, in);
+  else {
+    in = *autoInputstr;
+    *autoInputstr = "";
   }
   
-  else if (str1 == "i" || str1 == "inventory") {
-    command = str1;
+  stringstream inputstream(in);
+  string word;
+
+  while(getline(inputstream, word, ' '))
+    input.push_back(word);
+
+  if(input.size() < 1) {
+    cout << "Please enter input: " << endl;
+    return;
   }
   
-  else if (str1 == "take" || str1 == "read" || str1 == "drop") {
-    command = str1;
-    
-    cin >> str2;
-    item = str2;
+  if (input[0] == "n" || input[0] == "s" || input[0] == "e" || input[0] == "w" || input[0] == "north" || input[0] == "south" || input[0] == "east" || input[0] == "west") {
+    direction = input[0];
   }
   
-  else if (str1 == "open") {
-    command = str1;
+  else if (input[0] == "i" || input[0] == "inventory") {
+    command = input[0];
+  }
+  
+  else if (input[0] == "take" || input[0] == "read" || input[0] == "drop") {
+    command = input[0];
+
+    if(input.size() == 2)
+      item = input[1];
+    else
+      cout << this->command <<" what?" << endl;
+  }
+  
+  else if (input[0] == "open") {
+    command = input[0];
+
+    if(input.size() > 1) {
+      if (input.size() == 2 && input[1] == "exit") {
+	command = "call_game_over";
+	return;
+      }
     
-    cin >> str2;
-    
-    if (str2 == "exit") {
-      //call game over function
-      cout << "Game over" << endl;
-      return;
+      else
+	container = input[1];
     }
     
     else
-      container = str2;
+      cout << "Open what?" << endl;
   }
   
-  else if (str1 == "attack" || str1 == "put") { //four word input special case
-    command = str1;
+  else if (input[0] == "attack" || input[0] == "put") { //four word input special case
+    this->command = input[0];
     
-    cin >> str2;
-    if (str1 == "attack")
-      creature = str2;
-    
-    else
-      item = str2;
-    
-    cin >> str3;
-    
-    cin >> str4;
-		if (str1 == "attack")
-		  item = str4;
-		
-		else
-		  container = str4;
+    if (input[0] == "attack" && input.size() < 5) {
+      if(input.size() > 1) {
+	this->creature = input[1];
+
+	if(input.size() > 2) {
+	  if(input[2] == "with") {
+	    if(input.size() == 4) {
+	      this->item = input[3];
+	    }
+	  }
+	  else {
+	    cout << "Error" << endl;
+	  }
+	}
+	else
+	  cout << "attack " << this->creature << " with what?" << endl;
+      }
+      else
+	cout << "attack who?" << endl;
+    }
+
+    else if (input[0] == "put" && input.size() < 5) {
+      if(input.size() > 1) {
+	this->item = input[1];
+	
+	if(input.size() > 2) {
+	  if(input[2] == "in") {
+	    if(input.size() == 4) {
+	      this->container = input[3];
+	    }
+	    else
+	      cout << "put " << this->item << " in what?" << endl;
+	  }
+	else {
+	  cout << "Error" << endl;
+	  }
+	}
+	else
+	  cout << "put " << this->item << " in what?" << endl;
+      }
+      
+      else
+	cout << "put what?" << endl;
+    }
   }
   
-  //not working
-  else if (str1 == "turn") { //double letter special case
-    cin >> str2;
-    if (str2 == "on") {
-      command = "turn_on";
-			
-      cin >> str3;
-      item = str3;
+  else if (input[0] == "turn") { //double letter special case
+    if (input.size() > 2 && input[0] == "turn" && input[1] == "on") {
+      this->command = "turn_on";
+      
+      if(input.size() == 3) {
+	  this->item = input[2];
+      }
+      else {
+	cout << "Turn on what?" << endl;
+      }
     }
   }
   
   else {
-    string rubbish;
-    getline(cin, rubbish);
     cout << "I do not recognize what you want to do." << endl;
   }
 }

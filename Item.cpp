@@ -57,7 +57,7 @@ string Item::getTurnonPrint() {
 
 string Item::getTurnonAction() {
   return TurnOn.action;
-  }
+}
 
 Item::~Item(){
 

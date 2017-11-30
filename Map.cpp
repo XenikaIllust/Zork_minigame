@@ -50,8 +50,8 @@ Map::Map(xml_node<>* newMap) {
 
 Map::~Map() {}
 
-Room Map::getRoom(int i){
-  return this->roomlist[i];
+Room* Map::getRoom(int i){
+  return &(this->roomlist[i]);
 }
 
 int Map::getRoomlistSize(){
@@ -66,8 +66,8 @@ int Map::getItemlistSize(){
   return this->itemlist.size();
 }
 
-Container Map::getContainer(int i){
-  return this->containerlist[i];
+Container* Map::getContainer(int i){
+  return &(this->containerlist[i]);
 }
 
 int Map::getContainerlistSize(){

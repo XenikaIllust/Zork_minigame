@@ -6,6 +6,9 @@ using namespace rapidxml;
 
 Container::Container(xml_node<>* newContainer) : trigger( (newContainer != nullptr && newContainer->first_node("trigger") == nullptr) ? newContainer->first_node("trigger") : nullptr) {
   if(newContainer != nullptr) {
+
+    this->openStatus = 0;
+    
     if(newContainer->first_node("name") != nullptr)
       this->name = newContainer->first_node("name")->value();
     else
@@ -51,6 +54,25 @@ string Container::getItem(int i) {
 
 int Container::getItemlistSize() {
   return this->itemlist.size();
+}
+
+bool Container::getOpenStatus() {
+  return this->openStatus;
+}
+
+void Container::changeOpenStatus(bool status) {
+  this->openStatus = status;
+}
+
+void Container::addItem(string item) {
+  this->itemlist.push_back(item);
+}
+
+void Container::removeItem(string item) {
+  for(int i = 0; i < itemlist.size(); i++) {
+    if(itemlist[i] == item) 
+      this->itemlist.erase(itemlist.begin() + i);
+  }
 }
 
 Container::~Container(){
