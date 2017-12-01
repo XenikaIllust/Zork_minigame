@@ -15,6 +15,7 @@ public:
   std::string getContainer();
   std::string getItem();
   std::string getCreature();
+  std::string getRoom();
   
 private:
   std::vector<std::string> input;
@@ -23,6 +24,7 @@ private:
   std::string item;
   std::string creature;
   std::string container;
+  std::string room;
 };
 
 #endif

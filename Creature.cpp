@@ -6,32 +6,50 @@ using namespace rapidxml;
 
 Attack::Attack(xml_node<>* newAttack) : condition( newAttack != nullptr && newAttack->first_node("condition") != nullptr ? newAttack->first_node("condition") : nullptr)
 {
-    if(newAttack != nullptr) {
-      if(newAttack->first_node("action") != nullptr) {
-	xml_node<>* action_node = newAttack->first_node("action");
-        this->actionlist.push_back(action_node->value());
-	
-	while(action_node->next_sibling("action") != nullptr) {
-	  action_node = action_node->next_sibling("action");
-	  this->actionlist.push_back(action_node->value());
-	}
-      }
+  if(newAttack != nullptr) {
+    if(newAttack->first_node("action") != nullptr) {
+      xml_node<>* action_node = newAttack->first_node("action");
+      this->actionlist.push_back(action_node->value());
       
-      if(newAttack->first_node("print") != nullptr) {
-	xml_node<>* print_node = newAttack->first_node("print");
-        this->printlist.push_back(print_node->value());
-	
-	while(print_node->next_sibling("print") != nullptr) {
-	  print_node = print_node->next_sibling("print");
-	  this->printlist.push_back(print_node->value());
-	}
+      while(action_node->next_sibling("action") != nullptr) {
+	action_node = action_node->next_sibling("action");
+	  this->actionlist.push_back(action_node->value());
       }
     }
+    
+    if(newAttack->first_node("print") != nullptr) {
+      xml_node<>* print_node = newAttack->first_node("print");
+      this->printlist.push_back(print_node->value());
+      
+      while(print_node->next_sibling("print") != nullptr) {
+	print_node = print_node->next_sibling("print");
+	this->printlist.push_back(print_node->value());
+      }
+    }
+  }
 }
 
 Attack::~Attack() {}
 
+string Attack::getPrint(int i) {
+  return this->printlist[i];
+}
+
+int Attack::getPrintlistSize() {
+  return this->printlist.size();
+}
+
+string Attack::getAction(int i) {
+  return this->actionlist[i];
+}
+
+int Attack::getActionlistSize() {
+  return this->actionlist.size();
+}
+
 Creature::Creature(xml_node<>* newCreature) : trigger( newCreature != nullptr && newCreature->first_node("trigger") != nullptr ? newCreature->first_node("trigger") : nullptr ), attack( newCreature != nullptr && newCreature->first_node("attack") != nullptr ? newCreature->first_node("attack") : nullptr ) {
+  this->isDead = false;
+  
   if(newCreature != nullptr) {
     if(newCreature->first_node("name") != nullptr)
       this->name = newCreature->first_node("name")->value();
@@ -60,6 +78,14 @@ string Creature::getVulnerability(int i) {
 
 int Creature::getVulnerabilitylistSize() {
   return this->vulnerabilitylist.size();
+}
+
+Attack Creature::getAttack() {
+  return this->attack;
+}
+
+bool Creature::getDeathStatus() {
+  return this->isDead;
 }
 
 Creature::~Creature(){

@@ -74,8 +74,8 @@ int Map::getContainerlistSize(){
   return this->containerlist.size();
 }
 
-Creature Map::getCreature(int i){
-  return this->creaturelist[i];
+Creature* Map::getCreature(int i){
+  return &(this->creaturelist[i]);
 }
 
 int Map::getCreaturelistSize(){

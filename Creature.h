@@ -11,6 +11,11 @@ class Attack {
 public:
   Attack(rapidxml::xml_node<>*);
   virtual ~Attack();
+
+  std::string getPrint(int i);
+  int getPrintlistSize();
+  std::string getAction(int i);
+  int getActionlistSize();
   
   std::vector<std::string> actionlist;
   std::vector<std::string> printlist;
@@ -25,6 +30,8 @@ public:
   std::string getName();
   std::string getVulnerability(int i);
   int getVulnerabilitylistSize();
+  Attack getAttack();
+  bool getDeathStatus();
 
   Trigger trigger;
   Attack attack;
@@ -32,6 +39,7 @@ public:
 private:
   std::string name;
   std::vector<std::string> vulnerabilitylist;
+  bool isDead;
 };
 
 #endif

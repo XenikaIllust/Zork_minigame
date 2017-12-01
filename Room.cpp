@@ -121,4 +121,15 @@ int Room::getCreaturelistSize(){
   return this->creaturelist.size();
 }
 
+void Room::addCreature(string creature) {
+  this->creaturelist.push_back(creature);
+}
+
+void Room::removeCreature(string creature) {
+  for(int i = 0; i < creaturelist.size(); i++) {
+    if(creaturelist[i] == creature) 
+      this->creaturelist.erase(creaturelist.begin() + i);
+  }
+}
+
 

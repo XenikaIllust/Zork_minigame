@@ -16,6 +16,7 @@ public:
   std::string getAction(int i);
   int getActionSize();
   std::string getPrint();
+  bool getTriggerStatus();
 
   Condition condition;
   
@@ -24,6 +25,7 @@ private:
   std::string command;
   std::vector<std::string> action;
   std::string print;
+  bool isTriggered;
 };
 
 #endif

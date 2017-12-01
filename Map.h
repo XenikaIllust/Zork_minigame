@@ -21,7 +21,7 @@ public:
   int getItemlistSize();
   Container* getContainer(int i);
   int getContainerlistSize();
-  Creature getCreature(int i);
+  Creature* getCreature(int i);
   int getCreaturelistSize();
 
 private:

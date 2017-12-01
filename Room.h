@@ -27,6 +27,8 @@ public:
   int getContainerlistSize();
   std::string getCreature(int i);
   int getCreaturelistSize();
+  void addCreature(std::string);
+  void removeCreature(std::string);
 
 private:
   std::string name;

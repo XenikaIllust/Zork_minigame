@@ -11,10 +11,11 @@ void Input::getInput(string* autoInputstr) {
   container = "";
   item = "";
   creature = "";
+  room = "";
 
   string in;
 
-  if(*autoInputstr == "")
+  if(autoInputstr == nullptr || *autoInputstr == "")
     getline(cin, in);
   else {
     in = *autoInputstr;
@@ -48,13 +49,46 @@ void Input::getInput(string* autoInputstr) {
     else
       cout << this->command <<" what?" << endl;
   }
+
+  else if (input[0] == "Add" || input[0] == "add" || input[0] == "Delete" || input[0] == "delete") {
+    this->command = input[0];
+    
+    if ((input[0] == "add" || input[0] == "Add") && input.size() < 5) {
+      if(input.size() > 1) {
+	this->creature = input[1];
+
+	if(input.size() > 2) {
+	  if(input[2] == "to") {
+	    if(input.size() == 4) {
+	      this->room = input[3];
+	    }
+	  }
+	  else {
+	    cout << "Error" << endl;
+	  }
+	}
+	else
+	  cout << "add " << this->creature << " to what?" << endl;
+      }
+      else
+	cout << "add who?" << endl;
+    }
+
+    else if ((input[0] == "delete" || input[0] == "Delete") && input.size() < 5) {
+      if(input.size() > 1) {
+	this->creature = input[1];
+      }
+      else
+	cout << "delete what?" << endl;
+    }
+  }
   
   else if (input[0] == "open") {
     command = input[0];
 
     if(input.size() > 1) {
       if (input.size() == 2 && input[1] == "exit") {
-	command = "call_game_over";
+	command = "player_game_over";
 	return;
       }
     
@@ -64,6 +98,17 @@ void Input::getInput(string* autoInputstr) {
     
     else
       cout << "Open what?" << endl;
+  }
+
+  else if (input[0] == "Game" || input[0] == "game") {
+    command = input[0];
+
+    if(input.size() > 1) {
+      if (input.size() == 2 && (input[1] == "Over" || input[1] == "over")) {
+	command = "auto_game_over";
+	return;
+      }
+    }
   }
   
   else if (input[0] == "attack" || input[0] == "put") { //four word input special case
@@ -150,5 +195,9 @@ string Input::getItem() {
 }
 
 string Input::getCreature() {
-	return creature;
+  return creature;
+}
+
+string Input::getRoom() {
+  return this->room;
 }

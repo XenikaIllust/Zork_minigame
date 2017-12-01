@@ -55,6 +55,10 @@ string Trigger::getPrint() {
   return this->print;
   }
 
+bool Trigger::getTriggerStatus() {
+  return this->isTriggered;
+}
+
 Trigger::~Trigger(){
 
 }
